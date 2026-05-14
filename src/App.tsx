@@ -1,9 +1,8 @@
+import { RouterProvider } from '@tanstack/react-router';
+import { router } from './router';
+
 function App() {
-  return (
-    <>
-      <h1 className="text-3xl font-bold underline">Side Walk</h1>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
