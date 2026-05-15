@@ -30,6 +30,12 @@ export const Route = createRootRoute({
             >
               About
             </Link>
+            <Link
+              to="/play-with-react"
+              className="rounded px-3 py-2 text-sm font-medium text-[#3994BC] transition hover:bg-slate-800 hover:text-[#7dc5ff] [&.active]:font-bold"
+            >
+              Playground
+            </Link>
           </div>
         </nav>
       </header>
