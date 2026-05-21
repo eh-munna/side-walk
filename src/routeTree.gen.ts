@@ -9,13 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PlayWithStateRouteImport } from './routes/play-with-state'
 import { Route as PlayWithReactRouteImport } from './routes/play-with-react'
+import { Route as PlayWithEffectRouteImport } from './routes/play-with-effect'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PlayWithStateRoute = PlayWithStateRouteImport.update({
+  id: '/play-with-state',
+  path: '/play-with-state',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlayWithReactRoute = PlayWithReactRouteImport.update({
   id: '/play-with-react',
   path: '/play-with-react',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlayWithEffectRoute = PlayWithEffectRouteImport.update({
+  id: '/play-with-effect',
+  path: '/play-with-effect',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -32,40 +44,78 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/play-with-effect': typeof PlayWithEffectRoute
   '/play-with-react': typeof PlayWithReactRoute
+  '/play-with-state': typeof PlayWithStateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/play-with-effect': typeof PlayWithEffectRoute
   '/play-with-react': typeof PlayWithReactRoute
+  '/play-with-state': typeof PlayWithStateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/play-with-effect': typeof PlayWithEffectRoute
   '/play-with-react': typeof PlayWithReactRoute
+  '/play-with-state': typeof PlayWithStateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/play-with-react'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/play-with-effect'
+    | '/play-with-react'
+    | '/play-with-state'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/play-with-react'
-  id: '__root__' | '/' | '/about' | '/play-with-react'
+  to:
+    | '/'
+    | '/about'
+    | '/play-with-effect'
+    | '/play-with-react'
+    | '/play-with-state'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/play-with-effect'
+    | '/play-with-react'
+    | '/play-with-state'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  PlayWithEffectRoute: typeof PlayWithEffectRoute
   PlayWithReactRoute: typeof PlayWithReactRoute
+  PlayWithStateRoute: typeof PlayWithStateRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/play-with-state': {
+      id: '/play-with-state'
+      path: '/play-with-state'
+      fullPath: '/play-with-state'
+      preLoaderRoute: typeof PlayWithStateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/play-with-react': {
       id: '/play-with-react'
       path: '/play-with-react'
       fullPath: '/play-with-react'
       preLoaderRoute: typeof PlayWithReactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/play-with-effect': {
+      id: '/play-with-effect'
+      path: '/play-with-effect'
+      fullPath: '/play-with-effect'
+      preLoaderRoute: typeof PlayWithEffectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -88,7 +138,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  PlayWithEffectRoute: PlayWithEffectRoute,
   PlayWithReactRoute: PlayWithReactRoute,
+  PlayWithStateRoute: PlayWithStateRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

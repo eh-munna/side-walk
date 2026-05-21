@@ -36,6 +36,18 @@ export const Route = createRootRoute({
             >
               Playground
             </Link>
+            <Link
+              to="/play-with-state"
+              className="rounded px-3 py-2 text-sm font-medium text-[#3994BC] transition hover:bg-slate-800 hover:text-[#7dc5ff] [&.active]:font-bold"
+            >
+              State
+            </Link>
+            <Link
+              to="/play-with-effect"
+              className="rounded px-3 py-2 text-sm font-medium text-[#3994BC] transition hover:bg-slate-800 hover:text-[#7dc5ff] [&.active]:font-bold"
+            >
+              Effect
+            </Link>
           </div>
         </nav>
       </header>
