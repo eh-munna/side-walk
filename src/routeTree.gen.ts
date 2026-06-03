@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PlayWithStateRouteImport } from './routes/play-with-state'
 import { Route as PlayWithReactRouteImport } from './routes/play-with-react'
 import { Route as PlayWithEffectRouteImport } from './routes/play-with-effect'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const PlayWithEffectRoute = PlayWithEffectRouteImport.update({
   path: '/play-with-effect',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
   '/play-with-effect': typeof PlayWithEffectRoute
   '/play-with-react': typeof PlayWithReactRoute
   '/play-with-state': typeof PlayWithStateRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
   '/play-with-effect': typeof PlayWithEffectRoute
   '/play-with-react': typeof PlayWithReactRoute
   '/play-with-state': typeof PlayWithStateRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
   '/play-with-effect': typeof PlayWithEffectRoute
   '/play-with-react': typeof PlayWithReactRoute
   '/play-with-state': typeof PlayWithStateRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/dashboard'
     | '/play-with-effect'
     | '/play-with-react'
     | '/play-with-state'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/dashboard'
     | '/play-with-effect'
     | '/play-with-react'
     | '/play-with-state'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/dashboard'
     | '/play-with-effect'
     | '/play-with-react'
     | '/play-with-state'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DashboardRoute: typeof DashboardRoute
   PlayWithEffectRoute: typeof PlayWithEffectRoute
   PlayWithReactRoute: typeof PlayWithReactRoute
   PlayWithStateRoute: typeof PlayWithStateRoute
@@ -118,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayWithEffectRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DashboardRoute: DashboardRoute,
   PlayWithEffectRoute: PlayWithEffectRoute,
   PlayWithReactRoute: PlayWithReactRoute,
   PlayWithStateRoute: PlayWithStateRoute,
